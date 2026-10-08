@@ -1,0 +1,1027 @@
+/**
+ * VoltShare - SDG 7 Community Clean Energy Platform
+ * Styled with CipherUI: Minimalist Cryptographic Frontend Design System
+ * 
+ * Features:
+ * 1. Warm Cipher Paper Canvas (Light Mode default) & Obsidian Vault (Dark Mode)
+ * 2. Tactile 3D Chiseled Bevels (Non-shadow relief with physical bottom rims)
+ * 3. Signal Orange (#ff5e1f) Primary Key, Verified Emerald (#059669), Cipher Cyan (#0284c7)
+ * 4. Concentric Kumo Radii (2px, 4px, 8px, 12px) & Recessed Milled Rails
+ * 5. Monospace Telemetry Wells & Instrument-Grade Precision
+ */
+
+/* ==========================================================================
+   1. Design Tokens & Color Palette
+   ========================================================================== */
+
+:root {
+  /* Default Theme: Warm Cipher Paper (Light Mode) */
+  --bg-app: #f7f5f2;
+  --bg-subtle: #f0ebe3;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #faf8f5;
+  --bg-surface-active: #ece5dc;
+  --bg-elevated: #ffffff;
+  --bg-inset: #ebe4d8;             /* Recessed sunken milled channel */
+  --bg-glass: rgba(255, 255, 255, 0.96);
+  --bg-glass-input: #ebe4d8;
+
+  /* Hairline Borders & Physical 3D Chiseled Bevels */
+  --border-subtle: #e6dfd5;
+  --border-default: #d8cfc2;
+  --border-strong: #c2b7a5;
+  --border-top-highlight: #ffffff;  /* 1px light reflection on raised top edges */
+  --border-bottom-rim: #beb29e;     /* Physical bottom rim edge */
+  --border-inset-top: #b5a894;      /* Shaded sunken top lip */
+  --border-inset-bottom: #ffffff;   /* Sunken bottom shelf grounding */
+
+  --border-focus: #ff5e1f;
+  --border-accent: rgba(255, 94, 31, 0.35);
+
+  /* Typography Colors */
+  --text-primary: #121316;
+  --text-secondary: #2c2f35;
+  --text-muted: #6b7280;
+  --text-dim: #9ca3af;
+  --text-inverse: #ffffff;
+
+  /* Cryptographic & Utility Signal Accents */
+  --accent-primary: #ff5e1f;        /* Signal Orange / Primary Action Key */
+  --accent-primary-hover: #ff7038;
+  --accent-primary-pressed: #d63c01;
+  --accent-primary-rim: #c43200;    /* Bottom rim of 3D primary button */
+  --accent-primary-glow: rgba(255, 94, 31, 0.12);
+
+  --accent-success: #059669;        /* Verified Emerald */
+  --accent-success-hover: #047857;
+  --accent-success-glow: rgba(5, 150, 105, 0.12);
+
+  --accent-compute: #0284c7;        /* Cipher Stream / Telemetry Cyan */
+  --accent-compute-glow: rgba(2, 132, 199, 0.12);
+
+  --accent-warning: #d97706;
+  --accent-error: #dc2626;
+
+  /* Legacy Variable Aliases for Component Backward Compatibility */
+  --accent-green: #059669;
+  --accent-green-bright: #059669;
+  --accent-cyan: #0284c7;
+  --accent-amber: #d97706;
+  --accent-amber-bright: #d97706;
+
+  /* Concentric Radii Scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Micro-Grid Texture */
+  --grid-dot-color: rgba(18, 19, 22, 0.05);
+}
+
+/* Secondary Theme: Dark Mode ("Obsidian Vault") */
+[data-theme="dark"] {
+  --bg-app: #0d0f13;
+  --bg-subtle: #13171e;
+  --bg-surface: #171b23;
+  --bg-surface-hover: #1e232e;
+  --bg-surface-active: #252b38;
+  --bg-elevated: #1b202a;
+  --bg-inset: #0a0c10;             /* Sunken dark channel */
+  --bg-glass: rgba(23, 27, 35, 0.95);
+  --bg-glass-input: #0a0c10;
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.11);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-top-highlight: rgba(255, 255, 255, 0.18);
+  --border-bottom-rim: rgba(0, 0, 0, 0.55);
+  --border-inset-top: rgba(0, 0, 0, 0.65);
+  --border-inset-bottom: rgba(255, 255, 255, 0.08);
+
+  --border-focus: #ff5e1f;
+  --border-accent: rgba(255, 94, 31, 0.35);
+
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-dim: #6b7280;
+  --text-inverse: #0d0f13;
+
+  --accent-primary: #ff5e1f;
+  --accent-primary-hover: #ff7038;
+  --accent-primary-pressed: #d63c01;
+  --accent-primary-rim: #ad2b00;
+  --accent-primary-glow: rgba(255, 94, 31, 0.2);
+
+  --accent-success: #10b981;
+  --accent-success-hover: #34d399;
+  --accent-success-glow: rgba(16, 185, 129, 0.18);
+
+  --accent-compute: #38bdf8;
+  --accent-compute-glow: rgba(56, 189, 248, 0.18);
+
+  --accent-warning: #f59e0b;
+  --accent-error: #ef4444;
+
+  --accent-green: #10b981;
+  --accent-green-bright: #34d399;
+  --accent-cyan: #38bdf8;
+  --accent-amber: #f59e0b;
+  --accent-amber-bright: #fbbf24;
+
+  --grid-dot-color: rgba(255, 255, 255, 0.035);
+}
+
+/* ==========================================================================
+   2. Reset & Global Base
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Micro-Dot Grid Canvas */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(var(--grid-dot-color) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(255, 94, 31, 0.03), transparent 50%);
+  background-size: 20px 20px, 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* Layout Container */
+.app-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 20px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   3. Navigation & Header Bar (Tactile 3D Relief)
+   ========================================================================== */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  border-radius: var(--radius-md);
+  position: sticky;
+  top: 14px;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  border-top-color: #ff8552;
+  border-bottom: 2px solid var(--accent-primary-rim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.brand-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--accent-primary-glow);
+  border: 1px solid var(--border-accent);
+  border-top-color: rgba(255, 94, 31, 0.5);
+  border-bottom: 2px solid rgba(255, 94, 31, 0.4);
+  border-radius: var(--radius-xs);
+  color: var(--accent-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+/* Recessed Milled Track for Tabs */
+.nav-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1.5px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  border-radius: var(--radius-md);
+  padding: 2.5px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.nav-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 30px;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-top-color: transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.12s ease;
+}
+
+.nav-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.nav-tab-btn.active {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-tab-btn.active svg {
+  color: var(--accent-primary);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Tactile Selector */
+.user-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 32px;
+  box-sizing: border-box;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1.5px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  max-width: 220px;
+  flex-shrink: 0;
+}
+
+.user-selector select {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 500;
+  max-width: 175px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-selector select option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* Tactile Icon Buttons */
+.theme-toggle-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.08s ease, border-bottom-width 0.08s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+  border-top-color: var(--border-top-highlight);
+  border-bottom-color: var(--border-bottom-rim);
+  color: var(--text-primary);
+}
+
+.theme-toggle-btn:active {
+  border-bottom-width: 1px;
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   4. Academic & College Metadata Banner
+   ========================================================================== */
+
+.college-meta-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  gap: 12px;
+}
+
+.college-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.college-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--accent-success-glow);
+  border: 1px solid rgba(5, 150, 105, 0.35);
+  border-top-color: rgba(5, 150, 105, 0.5);
+  border-bottom: 2px solid rgba(4, 120, 87, 0.45);
+  border-radius: var(--radius-xs);
+  color: var(--accent-success);
+}
+
+.college-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   5. Buttons (Tactile 3D Chiseled Bevels)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+  transition: transform 0.08s ease, border-bottom-width 0.08s ease;
+}
+
+.btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  border-top-color: var(--border-top-highlight);
+  border-bottom-color: var(--border-bottom-rim);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  border-bottom-width: 1px;
+  background: var(--bg-surface-active);
+}
+
+/* Signal Orange Primary Action Button */
+.btn-primary {
+  background: var(--accent-primary);
+  color: #ffffff;
+  border: 1px solid var(--accent-primary);
+  border-top-color: #ff8552;
+  border-bottom: 2px solid var(--accent-primary-rim);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
+  color: #ffffff;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  border-bottom-width: 1px;
+  background: var(--accent-primary-pressed);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: var(--radius-xs);
+}
+
+.btn:disabled, .btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  border-bottom-width: 1px !important;
+}
+
+/* ==========================================================================
+   6. Display Cards & Surface Plates
+   ========================================================================== */
+
+.glass-panel, .display-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Primary Metric Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.metric-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-default);
+  border-top: 1px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.metric-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.metric-subtext {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   7. Marketplace Energy Cards
+   ========================================================================== */
+
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.energy-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.energy-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.source-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-badge-active {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--accent-success-glow);
+  border: 1px solid rgba(5, 150, 105, 0.35);
+  border-top-color: rgba(5, 150, 105, 0.5);
+  border-bottom: 2px solid rgba(4, 120, 87, 0.45);
+  color: var(--accent-success);
+}
+
+.seller-info {
+  margin-bottom: 12px;
+}
+
+.seller-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.seller-loc {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+/* Recessed Metadata Well for Pricing */
+.energy-pricing-box {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1.5px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.price-unit {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.price-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.savings-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 7px;
+  background: var(--accent-success-glow);
+  border: 1px solid rgba(5, 150, 105, 0.35);
+  border-top-color: rgba(5, 150, 105, 0.5);
+  border-bottom: 2px solid rgba(4, 120, 87, 0.45);
+  border-radius: var(--radius-xs);
+  color: var(--accent-success);
+}
+
+/* ==========================================================================
+   8. Form Controls, Tactile Sliders & Inputs
+   ========================================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top: 1.5px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-top-highlight);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--border-focus);
+}
+
+/* Range Slider with Milled Groove */
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.control-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1.5px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  outline: none;
+  cursor: pointer;
+}
+
+.control-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  border-top: 1.5px solid #ff8552;
+  border-bottom: 2px solid var(--accent-primary-rim);
+  cursor: pointer;
+}
+
+.control-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  border-top: 1.5px solid #ff8552;
+  border-bottom: 2px solid var(--accent-primary-rim);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   8. Tables & Monospace Grids
+   ========================================================================== */
+
+.custom-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.custom-table th {
+  background: var(--bg-inset);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-default);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.custom-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.custom-table tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-table tr:hover td {
+  background: var(--bg-subtle);
+}
+
+/* ==========================================================================
+   10. Modals & Dialogs (Tactile 3D Plates)
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 15, 19, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-content {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 520px;
+  padding: 22px;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-close-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top-color: var(--border-top-highlight);
+  border-bottom: 2px solid var(--border-bottom-rim);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.08s ease, border-bottom-width 0.08s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.modal-close-btn:active {
+  border-bottom-width: 1px;
+  transform: translateY(1px);
+}
+
+/* Recessed Metadata Summary Box */
+.metadata-summary-box {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+  border-top: 1.5px solid var(--border-inset-top);
+  border-bottom: 1px solid var(--border-inset-bottom);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* Static Status Indicators */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-success);
+}
+
+.status-dot-static {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-success);
+  display: inline-block;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1100px) {
+  .user-selector select {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 960px) {
+  .navbar {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+  .nav-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .nav-tabs {
+    order: 2;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .college-meta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "voltshare-sdg7-wad-project",
+  "version": "1.0.0",
+  "description": "VoltShare: Peer-to-Peer Community Solar Microgrid & Energy Trading Platform (SDG 7 CPS Project)",
+  "author": "Omwardhan Mishra (Enrollment No: 240410107094)",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev": "node scripts/start-dev.js",
+    "start": "node scripts/start-dev.js",
+    "build": "npm --prefix client run build",
+    "generate-report": "node report/generate-pdf.js"
+  }
+}

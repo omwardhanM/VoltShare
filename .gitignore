@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build artifacts
+client/dist/
+dist/
+
+# SQLite runtime database & WAL logs
+server/data/*.sqlite-shm
+server/data/*.sqlite-wal
+server/data/*.sqlite
+
+# Test & Automation artifacts
+.playwright-mcp/
+*.log
+
+# Environment & local files
+.env
+.env.local
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local context (faculty notes & syllabus)
+Context(Not Part of Project)/
